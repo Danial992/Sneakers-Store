@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sneakers Store</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    
+    <header class="bg-dark text-white p-3">
+        <div class="container">
+            <h1 class="text-center">Welcome to Sneakers Store</h1>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#about">About Sneakers</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#types">Types of Sneakers</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="about.html">Contact Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <form id="loginForm">
+        <input type="text" id="username" placeholder="Enter your user name" required>
+        <button type="submit">Login</button>
+    </form>
+    <button id="logoutButton" style="display:none;">Logout</button>
+
+    <main class="container my-5">
+        
+        <section id="about" class="mb-5">
+            <h2 class="mb-3">About Sneakers</h2>
+            <p>Sneakers, also known as athletic shoes, trainers, or tennis shoes, have become a staple in both fashion and sportswear over the past century. Originally designed for sports and physical activity, sneakers have evolved into versatile footwear suitable for casual, everyday use as well as competitive sports.</p>
+            <p>Sneakers trace their roots back to the late 19th century when rubber-soled shoes known as "plimsolls" were created for sports. These early versions lacked arch support but provided comfort and flexibility for walking and running. The term "sneaker" was coined because their rubber soles made them quieter than traditional hard-soled shoes, allowing wearers to "sneak" around.</p>
+            <p>In the 1920s, Converse introduced the Chuck Taylor All-Star, a shoe specifically designed for basketball, which quickly became iconic. In the decades that followed, companies like Adidas, Puma, and Nike entered the market, further popularizing sneakers with technological innovations and stylish designs.</p>
+        </section>
+        
+
+        <section id="types" class="row">
+            <h2 class="mb-3">Types of Sneakers</h2>
+
+            <div class="col-lg-6 mb-4">
+                <div class="card">
+                    <img src="314216788704_01.webp" class="card-img-top" alt="Sneakers Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Running Sneakers</h5>
+                        <p class="card-text">Perfect for athletes looking for lightweight shoes.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 mb-4">
+                <div class="card">
+                    <img src="314108479404_01 — копия.webp" class="card-img-top" alt="Basketball Sneakers">
+                    <div class="card-body">
+                        <h5 class="card-title">Basketball Sneakers</h5>
+                        <p class="card-text">Designed for maximum ankle support on the court.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 mb-4">
+                <div class="card">
+                    <img src="314312096804_01.webp" class="card-img-top" alt="Casual Sneakers">
+                    <div class="card-body">
+                        <h5 class="card-title">Casual Sneakers</h5>
+                        <p class="card-text">Stylish and comfortable for everyday wear.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 mb-4">
+                <div class="card">
+                    <img src="314108650004_01.webp" class="card-img-top" alt="High-Performance Sports Sneakers">
+                    <div class="card-body">
+                        <h5 class="card-title">High-Performance Sports Sneakers</h5>
+                        <p class="card-text">Built for athletes who need advanced performance footwear.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact my-5 text-center">
+            <h2>Contact Us</h2>
+            <form id="contactForm">
+                <div id="formErrors" class="text-danger"></div>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name:</label>
+                    <input type="text" id="name" class="form-control" placeholder="Your Name">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" id="email" class="form-control" placeholder="Your Email">
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message:</label>
+                    <textarea id="message" class="form-control" placeholder="Your Message"></textarea>
+                </div>
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </form>
+        </section>
+
+        <section class="theme-switcher my-5 text-center">
+            <button id="themeToggle" class="btn btn-primary">Toggle Day/Night Theme</button>
+        </section>
+        
+        <section class="color-switcher my-5 text-center">
+            <button id="changeColorBtn" class="btn btn-secondary">Change Background Color</button>
+        </section>
+
+        <section class="greeting my-5 text-center">
+            <h2>Enter Your Name:</h2>
+            <input type="text" id="nameInput" placeholder="Your Name">
+            <button id="greetBtn" class="btn btn-success">Greet Me</button>
+            <p id="greetingMessage" class="mt-3"></p>
+            <audio id="greetingSound">
+                <source src="greet.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </section>
+        
+        <section class="datetime my-5 text-center">
+            <h2>Current Date and Time</h2>
+            <p id="currentDateTime"></p>
+        </section>
+        
+    </main>
+
+    <footer class="bg-dark text-white text-center p-3">
+        <p>Sneakers Store &copy; 2024</p>
+        <p>Contact us at: <a href="mailto:info@sneakersstore.com" class="text-white">info@sneakersstore.com</a></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>    
+    <script src="script.js"></script>
+</body>
+</html>
