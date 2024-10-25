@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('username', username);
             displayLoggedIn(username);
         } else {
-            alert('Введите имя пользователя.');
+            alert('Enter your name.');
         }
     });
 
