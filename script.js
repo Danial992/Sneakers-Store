@@ -1,25 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Получаем элементы формы логина и кнопки выхода
     const loginForm = document.getElementById('loginForm');
     const logoutButton = document.getElementById('logoutButton');
     const usernameInput = document.getElementById('username');
     
-    // Проверяем, сохранено ли имя пользователя в localStorage при загрузке страницы
     window.onload = function() {
         const storedUsername = localStorage.getItem('username');
         if (storedUsername) {
-            // Если пользователь уже сохранён, показываем его как вошедшего
             displayLoggedIn(storedUsername);
         }
     };
 
-    // Обработка процесса входа
     loginForm.addEventListener('submit', function(event) {
-        event.preventDefault();  // Предотвращаем отправку формы
+        event.preventDefault();
         const username = usernameInput.value;
 
         if (username) {
-            // Сохраняем имя пользователя в localStorage
             localStorage.setItem('username', username);
             displayLoggedIn(username);
         } else {
@@ -27,29 +22,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Обработка процесса выхода
     logoutButton.addEventListener('click', function() {
-        // Удаляем имя пользователя из localStorage
         localStorage.removeItem('username');
         displayLoggedOut();
     });
 
-    // Функция для отображения состояния "вошёл в систему"
     function displayLoggedIn(username) {
-        loginForm.style.display = 'none';  // Скрываем форму входа
-        logoutButton.style.display = 'block';  // Показываем кнопку выхода
+        loginForm.style.display = 'none';
+        logoutButton.style.display = 'block';
         alert(`Welcome, ${username}!`);
     }
 
-    // Функция для отображения состояния "вышел из системы"
     function displayLoggedOut() {
-        loginForm.style.display = 'block';  // Показываем форму входа
-        logoutButton.style.display = 'none';  // Скрываем кнопку выхода
-        usernameInput.value = '';  // Очищаем поле ввода
+        loginForm.style.display = 'block';
+        logoutButton.style.display = 'none';
+        usernameInput.value = '';
         alert('You have logged out.');
     }
 
-    // Ваша существующая логика для формы валидации, изменения фона и переключения тем
     document.getElementById('contactForm').addEventListener('submit', function(event) {
         event.preventDefault(); 
         let errors = '';  
@@ -81,45 +71,38 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Изменение цвета фона с сохранением в localStorage
     document.getElementById('changeColorBtn').addEventListener('click', function() {
         let colors = ['#FF5733', '#33FF57', '#3357FF', '#F5FF33', '#000000', '#FFFFFF'];
         let randomColor = colors[Math.floor(Math.random() * colors.length)];
         document.body.style.transition = 'background-color 0.5s ease';
         document.body.style.backgroundColor = randomColor;
 
-        // Сохраняем выбранный цвет в localStorage
         localStorage.setItem('backgroundColor', randomColor);
     });
 
-    // Загрузка цвета фона из localStorage
     const savedBackgroundColor = localStorage.getItem('backgroundColor');
     if (savedBackgroundColor) {
         document.body.style.backgroundColor = savedBackgroundColor;
     }
 
-    // Переключение темы с сохранением состояния в localStorage
     document.getElementById('themeToggle').addEventListener('click', function() {
         document.body.classList.toggle('dark-theme');
 
-        // Сохраняем предпочтение темы в localStorage
         const isDarkTheme = document.body.classList.contains('dark-theme');
         localStorage.setItem('darkTheme', isDarkTheme);
     });
 
-    // Загрузка сохранённой темы из localStorage
     const savedDarkTheme = localStorage.getItem('darkTheme');
     if (savedDarkTheme === 'true') {
         document.body.classList.add('dark-theme');
     }
 
-    // Приветственное сообщение
     document.getElementById('greetBtn').addEventListener('click', function() {
         const name = document.getElementById('nameInput').value;
         const greetingMessage = document.getElementById('greetingMessage');
 
         if (name) {
-            greetingMessage.textContent = `Hello, ${name}!`; 
+            greetingMessage.textContent = `Hello, ${name}!`;
         } else {
             greetingMessage.textContent = "Please enter your name.";
         }
@@ -127,7 +110,6 @@ document.addEventListener('DOMContentLoaded', function() {
         sound.play();
     });
 
-    // Отображение текущей даты и времени
     function displayDateTime() {
         let now = new Date();
         let formattedDate = now.toLocaleString('en-US', {
@@ -139,6 +121,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setInterval(displayDateTime, 1000);
     displayDateTime();
-
 });
+
 
