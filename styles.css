@@ -366,7 +366,7 @@ body.dark-theme {
 
 .stars {
     position: absolute;
-    bottom: 10px; /* перемещаем вниз */
+    bottom: 10px;
     left: 10px;
     z-index: 10;
 }
