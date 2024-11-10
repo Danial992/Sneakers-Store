@@ -15,7 +15,7 @@ header {
 }
 
 h1 {
-    font-size: 5em;
+    font-size: 2em;
     transition: color 0.3s ease;
 }
 
@@ -373,4 +373,41 @@ body.dark-theme {
     left: 10px;
     z-index: 10;
 }
+
+.accordion {
+    background-color: #f1f1f1;
+    color: #444;
+    cursor: pointer;
+    padding: 15px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.accordion:hover {
+    background-color: #ddd;
+}
+
+
+.panel {
+    padding: 0 15px;
+    display: none;  
+    background-color: #f9f9f9;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    max-height: 0; 
+    overflow: hidden; 
+    transition: max-height 0.5s ease-out; 
+}
+
+
+.panel.open {
+    display: block;
+    max-height: 1000px; 
+}
+
 

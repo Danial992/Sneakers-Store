@@ -70,6 +70,24 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 2000);
         }
     });
+    
+    var accordion = document.querySelector(".accordion");
+
+
+    accordion.addEventListener("click", function() {
+            this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        document.querySelector = 'background-color 0.5s ease';
+
+    
+        if (panel.classList.contains("open")) {
+            panel.classList.remove("open");
+        } else {
+            panel.classList.add("open");
+        }
+    });
+
+
 
     document.getElementById('changeColorBtn').addEventListener('click', function() {
         let colors = ['#FF5733', '#33FF57', '#3357FF', '#F5FF33', '#000000', '#FFFFFF'];
