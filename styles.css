@@ -297,3 +297,47 @@ footer p, footer a {
 #logoutButton:hover {
     opacity: 0.8;
 }
+
+body.dark-theme {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+
+.dark-theme #types h2,
+.dark-theme #types .card-title,
+.dark-theme #types .card-text {
+    color: #ffffff;
+}
+
+
+.dark-theme #types .card {
+    background-color: #1e1e1e;
+    border: none;
+}
+
+
+.dark-theme a {
+    color: #bb86fc;
+}
+
+.dark-theme a:hover {
+    color: #ff79c6;
+}
+.stars i {
+    color: gold;
+    font-size: 20px;
+    margin-right: 2px;
+}
+
+.card {
+    position: relative;
+}
+
+.stars {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+}
+
