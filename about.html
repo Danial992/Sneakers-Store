@@ -8,11 +8,17 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <form id="loginForm">
-        <input type="text" id="username" placeholder="Enter your user name" required>
-        <button type="submit">Login</button>
-    </form>
-    <button id="logoutButton" style="display:none;">Logout</button>
+    
+    <div class="container my-5">
+        <form id="loginForm" class="text-center mb-3 mx-auto" style="max-width: 300px;">
+            <input type="text" id="username" class="form-control mb-2 w-100" placeholder="Enter your username" required>
+            <input type="password" id="password" class="form-control mb-2 w-100" placeholder="Enter your password" required>
+            <button type="submit" class="btn btn-success w-100">Login</button>
+        </form>
+        <button id="logoutButton" class="btn btn-danger w-100 mb-3" style="display:none;">Logout</button>
+    </div>
+    
+    <p id="loginMessage" class="text-center mt-3"></p>
     
     <header class="bg-dark text-white p-3">
         <div class="container">
@@ -45,6 +51,14 @@
             <h2 class="mb-3">About Sneakers</h2>
             <p>Sneakers, also known as athletic shoes, trainers, or tennis shoes, have become a staple in both fashion and sportswear over the past century. Originally designed for sports and physical activity, sneakers have evolved into versatile footwear suitable for casual, everyday use as well as competitive sports.</p>
         </section>
+        <section id="map" class="mb-5">
+            <h2 class="mb-3">Find Our Store</h2>
+            <div id="mapContainer" style="height: 00px; width: 100%;"></div>
+                <img src="МЕСТОПОЛОЖЕНИЕ КРОС.png" >
+            </div>
+            <div class="card-body">
+                <p class="card-text">Astana, Nura, st.Turan, 39</p>
+        </section>
 
         <section id="faq" class="mb-5">
             <h2 class="mb-3">Frequently Asked Questions</h2>
@@ -75,9 +89,13 @@
                 </div>
             </div>
         </section>
+        <section class="theme-switcher my-5 text-center">
+            <button id="themeToggle" class="btn btn-primary">Toggle Day/Night Theme</button>
+        </section>
 
-        <button class="btn btn-secondary mb-5" id="changeColorBtn">Change Background Color</button>
-        <div id="currentDateTime" class="text-center mb-5"></div>
+        <section class="color-switcher my-5 text-center">
+            <button id="changeColorBtn" class="btn btn-secondary">Change Background Color</button>
+        </section>
 
     </main>
 

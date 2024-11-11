@@ -15,7 +15,8 @@ header {
 }
 
 h1 {
-    font-size: 2em;
+    font-size: 0em;
+    color: transparent;
     transition: color 0.3s ease;
 }
 
@@ -55,6 +56,13 @@ main {
 section {
     margin-bottom: 40px;
     transition: color 0.3s ease;
+}
+button {
+    color: #000000;
+    font-size: 1em;
+    transition: color 0.3s ease;
+    font-size: 0.5rem;
+    font-weight: 550;
 }
 
 h2 {
@@ -136,6 +144,7 @@ form input[type="submit"]:hover {
 }
 
 footer {
+    position: relative;
     bottom: 0; 
     left: 0; 
     right: 0; 
@@ -265,21 +274,30 @@ footer p, footer a {
     align-items: center;
 }
 
-#username {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
+#username, #password {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    font-size: 15px;
+    transition: border-color 0.3s ease;
+}
+#username:focus, #password:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
 #loginForm button {
-    padding: 8px 12px;
+    padding: 10px 15px;
     background-color: #4CAF50;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 15px;
+    transition: background-color 0.3s ease;
+    width: 100%;
 }
 
 #logoutButton {
@@ -293,12 +311,19 @@ footer p, footer a {
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
-    display: none;
+    width: auto; 
+    max-width: 150px; 
+    display: none; 
 }
+
 
 #loginForm button:hover,
 #logoutButton:hover {
     opacity: 0.8;
+    background-color: #45a049;
+}
+#loginForm button:active {
+    background-color: #3e8e41;
 }
 
 body.dark-theme {
