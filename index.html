@@ -3,214 +3,521 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sneakers Store</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>SNEAKR - Premium Sneaker Store</title>
+    <meta name="description" content="Discover premium sneakers from top brands. Free shipping, 30-day returns, and authentic products guaranteed.">
+    <meta name="keywords" content="sneakers, premium shoes, athletic footwear, running shoes, basketball shoes">
+    
+    <!-- Open Graph for social media -->
+    <meta property="og:title" content="SNEAKR - Premium Sneaker Store">
+    <meta property="og:description" content="Discover premium sneakers from top brands">
+    <meta property="og:type" content="website">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-spinner"></div>
+        <p>Loading SNEAKR...</p>
+    </div>
 
-    
-    <header class="bg-dark text-white p-3">
+    <!-- Header -->
+    <header class="header-modern">
         <div class="container">
-            <h1 class="text-center">Welcome to Sneakers Store</h1>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <nav class="navbar navbar-expand-lg">
+                <a class="navbar-brand" href="#home">
+                    <span class="brand-logo">SNEAKR</span>
+                </a>
+                
+                <div class="header-actions d-flex align-items-center">
+                    <button class="search-toggle" id="searchToggle">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="user-toggle" id="userToggle">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    <button class="cart-toggle" id="cartToggle">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-count">0</span>
+                    </button>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#about">About Sneakers</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#types">Types of Sneakers</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="about.html">Contact Us</a>
-                            </li>
-                        </ul>
-                    </div>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#catalog">Catalog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#brands">Brands</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    </ul>
                 </div>
             </nav>
         </div>
+
+        <!-- Search Overlay -->
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-container">
+                <input type="text" placeholder="Search sneakers..." id="searchInput">
+                <button class="search-close" id="searchClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- User Panel -->
+        <div class="user-panel" id="userPanel">
+            <div class="user-panel-content">
+                <div id="loginSection">
+                    <h3>Welcome Back</h3>
+                    <form id="loginForm">
+                        <input type="email" id="email" placeholder="Email" required>
+                        <input type="password" id="password" placeholder="Password" required>
+                        <button type="submit" class="btn-primary">Sign In</button>
+                    </form>
+                    <p class="text-center mt-3">
+                        <a href="#" id="showRegister">Create Account</a>
+                    </p>
+                </div>
+                <div id="userProfile" style="display: none;">
+                    <h3>My Account</h3>
+                    <p id="welcomeMessage"></p>
+                    <button id="logoutBtn" class="btn-secondary">Sign Out</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cart Sidebar -->
+        <div class="cart-sidebar" id="cartSidebar">
+            <div class="cart-header">
+                <h3>Shopping Bag</h3>
+                <button class="cart-close" id="cartClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cart-content" id="cartContent">
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-bag"></i>
+                    <p>Your bag is empty</p>
+                </div>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total: $<span id="cartTotal">0.00</span></span>
+                </div>
+                <button class="checkout-btn">Checkout</button>
+            </div>
+        </div>
     </header>
-    <div class="container my-5">
-        <form id="loginForm" class="text-center mb-3 mx-auto" style="max-width: 300px;">
-            <input type="text" id="username" class="form-control mb-2 w-100" placeholder="Enter your username" required>
-            <input type="password" id="password" class="form-control mb-2 w-100" placeholder="Enter your password" required>
-            <button type="submit" class="btn btn-success w-100">Login</button>
-        </form>
-        <button id="logoutButton" class="btn btn-danger w-100 mb-3" style="display:none;">Logout</button>
-    </div>
-    
-    <p id="loginMessage" class="text-center mt-3"></p>
-    
-    
 
-    <main class="container my-5">
-        
-        <section id="about" class="mb-5">
-            <h2 class="mb-3">About Sneakers</h2>
-            
-            <button class="accordion">
-                Click to Read More About Sneakers
-            </button>
-            <div class="panel">
-                <p>Sneakers, also known as athletic shoes, trainers, or tennis shoes, have become a staple in both fashion and sportswear over the past century. Originally designed for sports and physical activity, sneakers have evolved into versatile footwear suitable for casual, everyday use as well as competitive sports.</p>
-                <p>Sneakers trace their roots back to the late 19th century when rubber-soled shoes known as "plimsolls" were created for sports. These early versions lacked arch support but provided comfort and flexibility for walking and running. The term "sneaker" was coined because their rubber soles made them quieter than traditional hard-soled shoes, allowing wearers to "sneak" around.</p>
-                <p>In the 1920s, Converse introduced the Chuck Taylor All-Star, a shoe specifically designed for basketball, which quickly became iconic. In the decades that followed, companies like Adidas, Puma, and Nike entered the market, further popularizing sneakers with technological innovations and stylish designs.</p>
-                <p>Today, sneakers are no longer just a tool for athletic performance—they have become an expression of personal style and a global fashion statement.</p>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Step Into <span class="gradient-text">Excellence</span></h1>
+                <p class="hero-subtitle">Discover the world's most coveted sneakers. Authentic. Premium. Exclusive.</p>
+                <div class="hero-cta">
+                    <button class="btn-hero-primary" onclick="scrollToSection('catalog')">Shop Collection</button>
+                    <button class="btn-hero-secondary" onclick="scrollToSection('about')">Learn More</button>
+                </div>
             </div>
-        </section>
-        
-        
-        <section id="types" class="row">
-            <h2 class="mb-3">Types of Sneakers</h2>
-        
-            <div class="col-lg-6 mb-4">
-                <div class="card position-relative">
-                    <div class="image-container">
-                        <img src="314216788704_01.webp" class="card-img-top" alt="Running Sneakers">
-                        <div class="info">Lightweight and ideal for athletes.</div>
+            <div class="hero-visual">
+                <div class="floating-sneaker">
+                    <img src="https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Premium Sneaker">
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Promotions Banner -->
+    <section class="promotions-banner">
+        <div class="container">
+            <div class="promo-content">
+                <span class="promo-text">🔥 Limited Time: Free shipping on orders over $150</span>
+                <span class="promo-code">Use code: FREESHIP150</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters & Catalog -->
+    <section id="catalog" class="catalog-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Collection</h2>
+                <p>Curated selection of premium sneakers</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-container">
+                <div class="filters-header">
+                    <h3>Filters</h3>
+                    <button class="filters-toggle d-lg-none" id="filtersToggle">
+                        <i class="fas fa-filter"></i> Filters
+                    </button>
+                </div>
+                
+                <div class="filters-content" id="filtersContent">
+                    <div class="filter-group">
+                        <h4>Brand</h4>
+                        <div class="filter-options">
+                            <label><input type="checkbox" value="nike"> Nike</label>
+                            <label><input type="checkbox" value="adidas"> Adidas</label>
+                            <label><input type="checkbox" value="jordan"> Jordan</label>
+                            <label><input type="checkbox" value="puma"> Puma</label>
+                            <label><input type="checkbox" value="newbalance"> New Balance</label>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Running Sneakers</h5>
-                        <p class="card-text">Perfect for athletes looking for lightweight shoes.</p>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+
+                    <div class="filter-group">
+                        <h4>Size</h4>
+                        <div class="size-grid">
+                            <button class="size-option" data-size="7">7</button>
+                            <button class="size-option" data-size="7.5">7.5</button>
+                            <button class="size-option" data-size="8">8</button>
+                            <button class="size-option" data-size="8.5">8.5</button>
+                            <button class="size-option" data-size="9">9</button>
+                            <button class="size-option" data-size="9.5">9.5</button>
+                            <button class="size-option" data-size="10">10</button>
+                            <button class="size-option" data-size="10.5">10.5</button>
+                            <button class="size-option" data-size="11">11</button>
+                            <button class="size-option" data-size="11.5">11.5</button>
+                            <button class="size-option" data-size="12">12</button>
+                            <button class="size-option" data-size="13">13</button>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Price Range</h4>
+                        <div class="price-range">
+                            <input type="range" id="priceRange" min="50" max="500" value="500">
+                            <div class="price-labels">
+                                <span>$50</span>
+                                <span id="maxPrice">$500</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Color</h4>
+                        <div class="color-options">
+                            <button class="color-option" data-color="black" style="background: #000"></button>
+                            <button class="color-option" data-color="white" style="background: #fff"></button>
+                            <button class="color-option" data-color="red" style="background: #ff0000"></button>
+                            <button class="color-option" data-color="blue" style="background: #0066ff"></button>
+                            <button class="color-option" data-color="green" style="background: #00cc00"></button>
+                            <button class="color-option" data-color="gray" style="background: #808080"></button>
+                        </div>
+                    </div>
+
+                    <button class="clear-filters">Clear All Filters</button>
+                </div>
+            </div>
+
+            <!-- Sort Options -->
+            <div class="sort-container">
+                <select id="sortSelect" class="sort-select">
+                    <option value="featured">Featured</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="newest">Newest</option>
+                    <option value="rating">Highest Rated</option>
+                </select>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be dynamically loaded -->
+            </div>
+
+            <div class="load-more-container">
+                <button class="load-more-btn" id="loadMoreBtn">Load More Products</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Brands -->
+    <section id="brands" class="brands-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Brands</h2>
+                <p>Partnered with the world's leading sneaker brands</p>
+            </div>
+            <div class="brands-grid">
+                <div class="brand-item">
+                    <div class="brand-logo">NIKE</div>
+                </div>
+                <div class="brand-item">
+                    <div class="brand-logo">ADIDAS</div>
+                </div>
+                <div class="brand-item">
+                    <div class="brand-logo">JORDAN</div>
+                </div>
+                <div class="brand-item">
+                    <div class="brand-logo">PUMA</div>
+                </div>
+                <div class="brand-item">
+                    <div class="brand-logo">NEW BALANCE</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="about-content">
+                        <h2>Authentic. Premium. Exclusive.</h2>
+                        <p>At SNEAKR, we curate the finest collection of authentic sneakers from the world's most prestigious brands. Every pair is verified for authenticity and quality.</p>
+                        <div class="features-list">
+                            <div class="feature-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>100% Authentic Guarantee</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-shipping-fast"></i>
+                                <span>Free Express Shipping</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-undo"></i>
+                                <span>30-Day Easy Returns</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            
-            <div class="col-lg-6 mb-4">
-                <div class="card position-relative">
-                    <div class="image-container">
-                        <img src="314108479404_01 — копия.webp" class="card-img-top" alt="Basketball Sneakers">
-                        <div class="info">Provides excellent grip and ankle protection.</div>
-
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Basketball Sneakers</h5>
-                        <p class="card-text">Designed for maximum ankle support on the court.</p>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
+                <div class="col-lg-6">
+                    <div class="about-visual">
+                        <img src="https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Sneaker Collection">
                     </div>
                 </div>
             </div>
-        
-            <div class="col-lg-6 mb-4">
-                <div class="card position-relative">
-                    <div class="image-container">
-                        <img src="314312096804_01.webp" class="card-img-top" alt="Casual Sneakers">
-                        <div class="info">Comfortable for daily wear with a trendy design.</div>
+        </div>
+    </section>
 
+    <!-- Social Feed -->
+    <section class="social-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Follow @SNEAKR</h2>
+                <p>See how our community styles their sneakers</p>
+            </div>
+            <div class="social-grid" id="socialGrid">
+                <!-- Social posts will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Stay in the Loop</h2>
+                <p>Get exclusive access to new releases and special offers</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-modern">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h3>SNEAKR</h3>
+                    <p>Premium sneakers for the modern lifestyle. Authentic products, exceptional service.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
                     </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Casual Sneakers</h5>
-                        <p class="card-text">Stylish and comfortable for everyday wear.</p>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
+                </div>
+                <div class="col-lg-2 mb-4">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="#catalog">All Sneakers</a></li>
+                        <li><a href="#catalog">New Arrivals</a></li>
+                        <li><a href="#catalog">Best Sellers</a></li>
+                        <li><a href="#catalog">Sale</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 mb-4">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#returnsModal">Returns</a></li>
+                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#shippingModal">Shipping</a></li>
+                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#sizeGuideModal">Size Guide</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 mb-4">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 mb-4">
+                    <h4>Payment</h4>
+                    <div class="payment-methods">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-amex"></i>
+                        <i class="fab fa-cc-paypal"></i>
+                        <i class="fab fa-apple-pay"></i>
+                        <i class="fab fa-google-pay"></i>
                     </div>
                 </div>
             </div>
-        
-            <div class="col-lg-6 mb-4">
-                <div class="card position-relative">
-                    <div class="image-container">
-                        <img src="314108650004_01.webp" class="card-img-top" alt="High-Performance Sports Sneakers">
-                        <div class="info">Engineered for maximum speed and durability.</div>
-
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">High-Performance Sports Sneakers</h5>
-                        <p class="card-text">For athletes seeking elite performance footwear.</p>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        
-                    </div>
-                </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 SNEAKR. All rights reserved. | Privacy Policy | Terms of Service</p>
             </div>
-        </section>
-        
-
-        <section class="contact my-5 text-center">
-            <h2>Contact Us</h2>
-            <form id="contactForm">
-                <div id="formErrors" class="text-danger"></div>
-                <div class="mb-3">
-                    <label for="name" class="form-label">Name:</label>
-                    <input type="text" id="name" class="form-control" placeholder="Your Name">
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email:</label>
-                    <input type="email" id="email" class="form-control" placeholder="Your Email">
-                </div>
-                <div class="mb-3">
-                    <label for="message" class="form-label">Message:</label>
-                    <textarea id="message" class="form-control" placeholder="Your Message"></textarea>
-                </div>
-                <input type="submit" value="Submit" class="btn btn-primary">
-            </form>
-        </section>
-
-        <section class="theme-switcher my-5 text-center">
-            <button id="themeToggle" class="btn btn-primary">Toggle Day/Night Theme</button>
-        </section>
-        
-        <section class="color-switcher my-5 text-center">
-            <button id="changeColorBtn" class="btn btn-secondary">Change Background Color</button>
-        </section>
-
-        <section class="greeting my-5 text-center">
-            <h2>Enter Your Name:</h2>
-            <input type="text" id="nameInput" placeholder="Your Name">
-            <button id="greetBtn" class="btn btn-success">Greet Me</button>
-            <p id="greetingMessage" class="mt-3"></p>
-            <audio id="greetingSound">
-                <source src="greet.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </section>
-        
-        <section class="datetime my-5 text-center">
-            <h2>Current Date and Time</h2>
-            <p id="currentDateTime"></p>
-        </section>
-        
-    </main>
-
-    <footer class="bg-dark text-white text-center p-3">
-        <p>Sneakers Store &copy; 2024</p>
-        <p>Contact us at: <a href="mailto:info@sneakersstore.com" class="text-white">info@sneakersstore.com</a></p>
+        </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>    
+    <!-- Product Modal -->
+    <div class="modal fade" id="productModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="productModalBody">
+                    <!-- Product details will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Modals -->
+    <div class="modal fade" id="returnsModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Returns & Exchanges</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>30-Day Return Policy</h6>
+                    <p>We offer free returns within 30 days of purchase. Items must be in original condition with tags attached.</p>
+                    <h6>How to Return</h6>
+                    <ol>
+                        <li>Contact our support team</li>
+                        <li>Print the prepaid return label</li>
+                        <li>Package your items securely</li>
+                        <li>Drop off at any authorized location</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="shippingModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Shipping Information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>Free Standard Shipping</h6>
+                    <p>On orders over $150 (3-5 business days)</p>
+                    <h6>Express Shipping</h6>
+                    <p>$15 (1-2 business days)</p>
+                    <h6>Next Day Delivery</h6>
+                    <p>$25 (Order by 2PM)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="sizeGuideModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Size Guide</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="size-guide-table">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>US Size</th>
+                                    <th>EU Size</th>
+                                    <th>UK Size</th>
+                                    <th>Foot Length (cm)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>7</td><td>40</td><td>6</td><td>25.0</td></tr>
+                                <tr><td>7.5</td><td>40.5</td><td>6.5</td><td>25.4</td></tr>
+                                <tr><td>8</td><td>41</td><td>7</td><td>25.8</td></tr>
+                                <tr><td>8.5</td><td>42</td><td>7.5</td><td>26.2</td></tr>
+                                <tr><td>9</td><td>42.5</td><td>8</td><td>26.7</td></tr>
+                                <tr><td>9.5</td><td>43</td><td>8.5</td><td>27.1</td></tr>
+                                <tr><td>10</td><td>44</td><td>9</td><td>27.5</td></tr>
+                                <tr><td>10.5</td><td>44.5</td><td>9.5</td><td>27.9</td></tr>
+                                <tr><td>11</td><td>45</td><td>10</td><td>28.3</td></tr>
+                                <tr><td>11.5</td><td>45.5</td><td>10.5</td><td>28.8</td></tr>
+                                <tr><td>12</td><td>46</td><td>11</td><td>29.2</td></tr>
+                                <tr><td>13</td><td>47.5</td><td>12</td><td>30.0</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get in Touch</h2>
+                <p>Have questions? We're here to help</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <form id="contactForm" class="contact-form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" id="contactName" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" id="contactEmail" placeholder="Your Email" required>
+                            </div>
+                        </div>
+                        <input type="text" id="contactSubject" placeholder="Subject" required>
+                        <textarea id="contactMessage" placeholder="Your Message" rows="5" required></textarea>
+                        <div id="contactErrors" class="form-errors"></div>
+                        <button type="submit" class="btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
-
